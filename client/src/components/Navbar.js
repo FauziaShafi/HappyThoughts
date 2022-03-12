@@ -5,9 +5,14 @@ import "./Navbar.css";
 export default function Navbar() {
   const { isLoggedIn, logout } = useAuth();
   return (
+    
     <nav className="navbar">
+      <p className="pheader">Happy Programmers</p>
       <NavLink to="/" className="navbar-link">
         Home
+      </NavLink>
+      <NavLink to="/aboutus" className="navbar-link">
+        About
       </NavLink>
       {isLoggedIn ? (
         <>
