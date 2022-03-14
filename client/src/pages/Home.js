@@ -1,5 +1,6 @@
 import { useAuth } from "../util/auth";
 import "../styles/landing.css";
+import "../styles/createpost.css";
 
 export default function Home() {
   const { isLoggedIn, user } = useAuth();
@@ -12,7 +13,7 @@ export default function Home() {
         Happiness through Problems and Finding Solutions
       </p>
       <div className="postBox">
-      <p>Latest Posts (5)</p>
+      <p>Home page</p>
       </div>
     </div>
   );

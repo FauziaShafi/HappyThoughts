@@ -1,15 +1,40 @@
 import "../styles/landing.css";
+import "../styles/createpost.css";
 
-export default function Post() {
-    
-    return (
-      <div>
-        {/* TODO: display logged in user's username */}
-        <h1>Latest Posts</h1>
-        <hr />
-        <p>
-          ...
-        </p>
-      </div>
-    );
-  }
+
+
+export default function posts() {
+  const posts = ["This is a post about loving programing ", "comment: i as well like programming"];
+  const styles = {
+    body: {
+      width: "100%",
+      display: "flex",
+      flexDirection : 'column',
+      gridGap : '20px',
+      alignItems: "center",
+      marginTop : "8%"
+      
+    },
+    link : {
+      width : '60%',
+      backgroundColor: "grey",
+      padding : "35px",
+      
+    }
+  };
+
+  return (
+    <div className="mb-8">
+     <div style={styles.body}>
+     {posts.map(item => (
+        <li className="list-group-item" key={item.id} style={styles.link}>
+          {item}
+        </li>
+      ))}
+
+     </div>
+
+      
+    </div>
+  );
+}
