@@ -1,3 +1,5 @@
+import "../styles/landing.css";
+
 export default function Post() {
     
     return (

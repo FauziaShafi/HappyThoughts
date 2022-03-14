@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_POST } from "../util/mutations";
 import { QUERY_ME, QUERY_POSTS } from "../util/queries";
+import "../styles/landing.css";
 export default function Create() {
   const styles = {
     body: {

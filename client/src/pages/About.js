@@ -1,9 +1,9 @@
-
+import "../styles/landing.css";
 
 export default function About() {
     
   return (
-    <div>
+    <div className="expoBox">
       {/* TODO: display logged in user's username */}
       <h1>About Us</h1>
       <hr />
