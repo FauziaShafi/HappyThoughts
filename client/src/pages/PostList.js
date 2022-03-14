@@ -2,7 +2,7 @@ import React from "react";
 
 
 export default function Create() {
-  const posts = ["Link 1", "Link 2", "Link 3", "Link 4"];
+  const posts = ["Happy thought title", "Happy day", "Whatever", "Again!!!"];
   const styles = {
     body: {
       width: "100%",

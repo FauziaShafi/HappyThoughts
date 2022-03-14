@@ -5,17 +5,18 @@ import { QUERY_ME, QUERY_POSTS } from "../util/queries";
 export default function Create() {
   const styles = {
     body: {
-      backgroundColor: "grey",
+      backgroundColor: '#ECF0F5',
 
       fontFamily: "Anton",
     },
     form: {
       padding: "8%",
       margin: "2em",
-      backgroundColor: "light-grey",
+      backgroundColor: "white",
       width: "50%",
       height: "70%",
       borderRadius: "7px",
+      border : '1px solid black'
     },
 
     center: {
@@ -89,14 +90,14 @@ export default function Create() {
     event.preventDefault();
 
     try {
-      const { data } = await addPost({
+      const {data} = await addPost({
         variables: {
-          //  ...postState
-          postTitle: postState.title,
-          postText: postState.text,
+            ...postState
+          // postTitle: postState.title,
+          // postText: postState.text,
         },
       });
-
+      console.log("data", data);
       window.alert("Post Added");
     } catch (err) {
       console.error(err);

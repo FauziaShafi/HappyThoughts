@@ -47,7 +47,7 @@ export default function Login() {
 
   if (isLoggedIn) {
     // navigate to page user was redirected from or the home page.
-    const from = location.state?.from?.pathname || "/";
+    const from = location.state?.from?.pathname || "/post";
     return <Navigate to={from} replace />
   }
 

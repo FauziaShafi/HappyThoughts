@@ -2,7 +2,7 @@ const {
   AuthenticationError,
   UserInputError,
 } = require("apollo-server-express");
-const { User } = require("../models");
+const { User, Post } = require("../models");
 const { signToken } = require("../util/auth");
 const { dateScalar } = require("./customScalars");
 

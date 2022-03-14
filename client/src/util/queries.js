@@ -25,6 +25,7 @@ export const QUERY_POSTS = gql`
       createdAt
       comments {
         _id
+        commentAuthor
         commentText
       }
     }
