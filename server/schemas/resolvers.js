@@ -10,13 +10,15 @@ const resolvers = {
   Date: dateScalar,
   Query: {
     me: async (parent, args, ctx) => {
-      // if ctx.user is undefined, then no token or an invalid token was
-      // provided by the client.
       if (!ctx.user) {
         throw new AuthenticationError("Must be logged in.");
       }
       return User.findOne({ email: ctx.user.email });
     },
+    posts: async () => {
+      return Post.find().sort({ createdAt: -1 });
+    },
+
   },
   Mutation: {
     createUser: async (parent, args) => {
@@ -46,6 +48,23 @@ const resolvers = {
       user.lastLogin = Date.now();
       await user.save();
       return { token, user };
+    },
+
+    addPost: async (parent, { postTitle, postText }, context) => {
+      if (context.user) {
+        const post = await Post.create({
+          postTitle,
+          postText,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { posts: post._id } }
+        );
+
+        return post;
+      }
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 };
