@@ -10,7 +10,7 @@ export default function posts() {
       width: "100%",
       display: "flex",
       flexDirection : 'column',
-      gridGap : '20px',
+      gridGap : '5px',
       alignItems: "center",
       marginTop : "8%"
       
@@ -18,10 +18,12 @@ export default function posts() {
     link : {
       width : '60%',
       backgroundColor: "grey",
-      padding : "35px",
+      padding : "50px",
       
     }
   };
+
+
 
   return (
     <div className="mb-8">
