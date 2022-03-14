@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../util/auth";
-
+import "../styles/createpost.css";
 
 const styles = {
   formControl: {
@@ -46,7 +46,7 @@ export default function SignUp() {
     return <Navigate to="/" replace />
   }
   return (
-    <div>
+    <div className="expoBox">
       <h1>Sign Up</h1>
       <hr />
       <form onSubmit={handleSubmit}>
