@@ -8,14 +8,15 @@ export default function Navbar() {
     
     <nav className="navbar">
       <p className="pheader">Happy Programmers</p>
-      <NavLink to="/" className="navbar-link">
+      
+      {isLoggedIn ? (
+        <>
+        <NavLink to="/" className="navbar-link">
         Home
       </NavLink>
       <NavLink to="/aboutus" className="navbar-link">
         About
       </NavLink>
-      {isLoggedIn ? (
-        <>
           <NavLink to="/posts" className="navbar-link">
             User
           </NavLink>
@@ -25,12 +26,12 @@ export default function Navbar() {
         </>
       ) : (
         <>
-          <NavLink to="/login" className="navbar-link">
+          {/* <NavLink to="/login" className="navbar-link">
             Login
           </NavLink>
           <NavLink to="/signup" className="navbar-link">
             Signup
-          </NavLink>
+          </NavLink> */}
         </>
       )}
     </nav>

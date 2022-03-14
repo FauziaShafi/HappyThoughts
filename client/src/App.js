@@ -24,10 +24,10 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/aboutus" element={<About />} />
-            <Route path="/posts" element={<Post />} />
-            <Route path="/posts/:postID/create" element={<CreatePost />} />
-            <Route path="/posts/:postID" element={<SinglePost />} />
-            <Route path="/posts/postID/posts" element={<PostList />} />
+            <Route path="/home" element={<Post />} />
+            <Route path="/home/create" element={<CreatePost />} />
+            <Route path="/home/posts/:postID" element={<SinglePost />} />
+            <Route path="/posts" element={<PostList />} />
             {/* Use <RequiredAuth> for pages that should only be accessible to a
             user that has logged in.*/}
             {/* <Route
