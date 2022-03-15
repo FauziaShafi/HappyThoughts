@@ -8,12 +8,16 @@ const typeDefs = gql`
     "Find the logged in user."
     me: User
     posts: [Post]
+    post(postId: ID!): Post
   }
 
   type Mutation {
     createUser(email: String!, password: String!, username: String!): Auth
     login(email: String!, password: String!): Auth
     addPost(postTitle: String!, postText: String!): Post
+    addComment(postId: ID!, commentText: String!): Post
+    removePost(postId: ID!): Post
+  
   }
 
   type Auth {
