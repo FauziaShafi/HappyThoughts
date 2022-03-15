@@ -13,12 +13,14 @@ const resolvers = {
       if (!ctx.user) {
         throw new AuthenticationError("Must be logged in.");
       }
-      return User.findOne({ email: ctx.user.email }).populate('posts');;
+      return User.findOne({ email: ctx.user.email }).populate("posts");
     },
     posts: async () => {
       return Post.find().sort({ createdAt: -1 });
     },
-
+    post: async (parent, { postId }) => {
+      return Post.findOne({ _id: postId });
+    },
   },
   Mutation: {
     createUser: async (parent, args) => {
@@ -51,7 +53,6 @@ const resolvers = {
     },
 
     addPost: async (parent, { postTitle, postText }, context) => {
-     console.log("context.user",context.user);
       if (context.user) {
         const post = await Post.create({
           postTitle,
@@ -62,10 +63,45 @@ const resolvers = {
           { _id: context.user._id },
           { $addToSet: { posts: post._id } }
         );
-console.log("added post info", post);
+
         return post;
       }
       throw new AuthenticationError("You need to be logged in!");
+    },
+
+    removePost: async (parent, { postId }, context) => {
+      if (context.user) {
+        const post = await Post.findOneAndDelete({
+          _id: postId,
+          
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { posts: post._id } }
+        );
+
+        return post;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
+    addComment: async (parent, { postId, commentText }, context) => {
+      if (context.user) {
+        return Post.findOneAndUpdate(
+          { _id: postId },
+          {
+            $addToSet: {
+              comments: { commentText, commentAuthor: context.user.username },
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
   },
 };
