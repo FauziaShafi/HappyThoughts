@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation, Navigate } from "react-router-dom";
 import { useAuth } from "../util/auth";
+import "../styles/landing.css";
+import "../styles/createpost.css";
 
 // This signup form is intentionally minimalist to reduce effort required to
 // customize it to your app's needs. See the excellent best practices guide for
@@ -47,12 +49,12 @@ export default function Login() {
 
   if (isLoggedIn) {
     // navigate to page user was redirected from or the home page.
-    const from = location.state?.from?.pathname || "/";
+    const from = location.state?.from?.pathname || "/post";
     return <Navigate to={from} replace />
   }
 
   return (
-    <div>
+    <div className="expoBox">
       <h1>Login</h1>
       <hr />
       <form onSubmit={handleSubmit}>

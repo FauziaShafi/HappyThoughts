@@ -15,3 +15,19 @@ export const LOGIN = gql`
     }
   }
 `;
+export const ADD_POST = gql`
+  mutation addPost($postText: String!,$postTitle: String!) {
+    addPost(postText:$postText,postTitle: $postTitle) {
+      _id
+      postTitle
+      postText
+      createdAt
+      comments {
+        _id
+        commentText
+        commentAuthor
+        createdAt
+      }
+    }
+  }
+`;

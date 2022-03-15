@@ -1,12 +1,8 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../util/auth";
+import "../styles/createpost.css";
 
-// This signup form is intentionally minimalist to reduce effort required to
-// customize it to your app's needs. See the excellent best practices guide for
-// sign informs on web.dev https://web.dev/sign-in-form-best-practices/
-
-// TODO: customize styles or import styles with favorite css approach
 const styles = {
   formControl: {
     display: "flex",
@@ -47,10 +43,10 @@ export default function SignUp() {
 
   if (isLoggedIn) {
     // navigate to the home page
-    return <Navigate to="/" replace />
+    return <Navigate to="/post" replace />
   }
   return (
-    <div>
+    <div className="expoBox">
       <h1>Sign Up</h1>
       <hr />
       <form onSubmit={handleSubmit}>

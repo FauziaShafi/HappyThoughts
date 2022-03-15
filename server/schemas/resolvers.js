@@ -2,7 +2,7 @@ const {
   AuthenticationError,
   UserInputError,
 } = require("apollo-server-express");
-const { User } = require("../models");
+const { User, Post } = require("../models");
 const { signToken } = require("../util/auth");
 const { dateScalar } = require("./customScalars");
 
@@ -10,12 +10,16 @@ const resolvers = {
   Date: dateScalar,
   Query: {
     me: async (parent, args, ctx) => {
-      // if ctx.user is undefined, then no token or an invalid token was
-      // provided by the client.
       if (!ctx.user) {
         throw new AuthenticationError("Must be logged in.");
       }
-      return User.findOne({ email: ctx.user.email });
+      return User.findOne({ email: ctx.user.email }).populate("posts");
+    },
+    posts: async () => {
+      return Post.find().sort({ createdAt: -1 });
+    },
+    post: async (parent, { postId }) => {
+      return Post.findOne({ _id: postId });
     },
   },
   Mutation: {
@@ -46,6 +50,58 @@ const resolvers = {
       user.lastLogin = Date.now();
       await user.save();
       return { token, user };
+    },
+
+    addPost: async (parent, { postTitle, postText }, context) => {
+      if (context.user) {
+        const post = await Post.create({
+          postTitle,
+          postText,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { posts: post._id } }
+        );
+
+        return post;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
+    removePost: async (parent, { postId }, context) => {
+      if (context.user) {
+        const post = await Post.findOneAndDelete({
+          _id: postId,
+          
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { posts: post._id } }
+        );
+
+        return post;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
+    addComment: async (parent, { postId, commentText }, context) => {
+      if (context.user) {
+        return Post.findOneAndUpdate(
+          { _id: postId },
+          {
+            $addToSet: {
+              comments: { commentText, commentAuthor: context.user.username },
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
   },
 };

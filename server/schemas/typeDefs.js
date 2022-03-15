@@ -7,11 +7,17 @@ const typeDefs = gql`
   type Query {
     "Find the logged in user."
     me: User
+    posts: [Post]
+    post(postId: ID!): Post
   }
 
   type Mutation {
     createUser(email: String!, password: String!, username: String!): Auth
     login(email: String!, password: String!): Auth
+    addPost(postTitle: String!, postText: String!): Post
+    addComment(postId: ID!, commentText: String!): Post
+    removePost(postId: ID!): Post
+  
   }
 
   type Auth {
@@ -23,23 +29,23 @@ const typeDefs = gql`
     _id: ID!
     username: String!
     email: String!
-    password : String
+    password: String
+    post: [Post]
   }
 
   type Post {
-    _id : ID!
-    postText :String!
-    postAuthor : String!
-    createAt : Date
-    comment : [Comments]
-
+    _id: ID!
+    postTitle: String!
+    postText: String!
+    createdAt: Date
+    comments: [Comments]
   }
 
-  type  Comments {
-    _id : ID!
-    commentText : String!
-    commentAuthor : String!
-    createdAt : Date
+  type Comments {
+    _id: ID!
+    commentText: String!
+    commentAuthor: String!
+    createdAt: Date
   }
 `;
 
