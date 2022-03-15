@@ -7,7 +7,7 @@ import "../styles/landing.css";
 export default function Create() {
   const styles = {
     body: {
-      backgroundColor: '#ECF0F5',
+      backgroundColor: "#ECF0F5",
 
       fontFamily: "Anton",
     },
@@ -18,7 +18,7 @@ export default function Create() {
       width: "50%",
       height: "70%",
       borderRadius: "7px",
-      border : '1px solid black'
+      border: "1px solid black",
     },
 
     center: {
@@ -51,17 +51,16 @@ export default function Create() {
     text: "",
   });
 
-  const [addPost, { data, error, loading }] = useMutation(ADD_POST
-    , {
-      //update method 
+  const [addPost, { data, error, loading }] = useMutation(ADD_POST, {
+    //update method
     update(cache, { data: { addPost } }) {
       try {
         // retrieve existing
         const { posts } = cache.readQuery({ query: QUERY_POSTS });
-        console.log("Read posts", posts); 
-   //  update the cache by combining existing data with the newly created data
+        console.log("Read posts", posts);
+        //  update the cache by combining existing data with the newly created data
         cache.writeQuery({
-          query:QUERY_POSTS,
+          query: QUERY_POSTS,
           data: { posts: [addPost, ...posts] },
         });
       } catch (e) {
@@ -79,33 +78,29 @@ export default function Create() {
         data: { me: { ...me, posts: [...me.posts, addPost] } },
       });
     },
-  }
-  );
+  });
 
   const handleChange = (event) => {
-    const { name,value } = event.target;
- 
-      setpostState({ ...postState, [name]:value });
-    
+    const { name, value } = event.target;
+
+    setpostState({ ...postState, [name]: value });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-
-      const {data} = await addPost({
+      const { data } = await addPost({
         variables: {
-           // ...postState
-           postTitle: postState.title,
-           postText: postState.text,
+          // ...postState
+          postTitle: postState.title,
+          postText: postState.text,
         },
       });
-  
-      window.alert("Post Added");
-      //redirect to new route 
-      window.location.href = "/posts"; 
 
+      window.alert("Post Added");
+      //redirect to new route
+      window.location.href = "/posts";
     } catch (err) {
       console.error(err);
     }
