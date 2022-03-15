@@ -13,7 +13,7 @@ const resolvers = {
       if (!ctx.user) {
         throw new AuthenticationError("Must be logged in.");
       }
-      return User.findOne({ email: ctx.user.email });
+      return User.findOne({ email: ctx.user.email }).populate('posts');;
     },
     posts: async () => {
       return Post.find().sort({ createdAt: -1 });
@@ -51,6 +51,7 @@ const resolvers = {
     },
 
     addPost: async (parent, { postTitle, postText }, context) => {
+     console.log("context.user",context.user);
       if (context.user) {
         const post = await Post.create({
           postTitle,
@@ -61,7 +62,7 @@ const resolvers = {
           { _id: context.user._id },
           { $addToSet: { posts: post._id } }
         );
-
+console.log("added post info", post);
         return post;
       }
       throw new AuthenticationError("You need to be logged in!");

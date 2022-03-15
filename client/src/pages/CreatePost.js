@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_POST } from "../util/mutations";
 import { QUERY_ME, QUERY_POSTS } from "../util/queries";
+// import PostList from "./PostList";
 import "../styles/landing.css";
 export default function Create() {
   const styles = {
@@ -57,6 +58,7 @@ export default function Create() {
       try {
         // retrieve existing
         const { posts } = cache.readQuery({ query: QUERY_POSTS });
+        console.log("Read posts", posts); 
    //  update the cache by combining existing data with the newly created data
         cache.writeQuery({
           query:QUERY_POSTS,
@@ -91,15 +93,19 @@ export default function Create() {
     event.preventDefault();
 
     try {
+
       const {data} = await addPost({
         variables: {
-            ...postState
-          // postTitle: postState.title,
-          // postText: postState.text,
+           // ...postState
+           postTitle: postState.title,
+           postText: postState.text,
         },
       });
-      console.log("data", data);
+  
       window.alert("Post Added");
+      //redirect to new route 
+      window.location.href = "/posts"; 
+
     } catch (err) {
       console.error(err);
     }
@@ -152,6 +158,14 @@ export default function Create() {
           </div>
         </form>
       </div>
+
+      {/* <div>
+      <PostList
+              //posts={title,text}
+              title="Here's the current roster of friends..."
+            />
+
+      </div> */}
     </div>
   );
 }
