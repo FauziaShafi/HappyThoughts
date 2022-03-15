@@ -13,7 +13,7 @@ const typeDefs = gql`
   type Mutation {
     createUser(email: String!, password: String!, username: String!): Auth
     login(email: String!, password: String!): Auth
-    addPost(postTitle: String!,postText: String!): Post
+    addPost(postTitle: String!, postText: String!): Post
   }
 
   type Auth {
@@ -25,24 +25,23 @@ const typeDefs = gql`
     _id: ID!
     username: String!
     email: String!
-    password : String
-    posts: [Post]
+    password: String
+    post: [Post]
   }
 
   type Post {
-    _id : ID!
-    postTitle :String!
-    postText :String!
-    createdAt : Date
-    comments : [Comments]
-
+    _id: ID!
+    postTitle: String!
+    postText: String!
+    createdAt: Date
+    comments: [Comments]
   }
 
-  type  Comments {
-    _id : ID!
-    commentText : String!
-    commentAuthor : String!
-    createdAt : Date
+  type Comments {
+    _id: ID!
+    commentText: String!
+    commentAuthor: String!
+    createdAt: Date
   }
 `;
 
