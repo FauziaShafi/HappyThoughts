@@ -98,7 +98,7 @@ export const AuthProvider = ({ children }) => {
       // TODO: implement improved validation.
       if (!email || !password) {
         // TODO: implement improved error message.
-        throw new Error("Auth error. Invalid parameter received.");
+        throw new Error("Invalid email or password .");
       }
       const { data } = await loginUser({ variables: { email, password } });
       dispatch({ type: LOGIN_SUCCESS, payload: data.login.token });
@@ -114,7 +114,7 @@ export const AuthProvider = ({ children }) => {
       // TODO: implement improved validation.
       if (!email || !password || !username) {
         // TODO: implement improved error message
-        throw new Error("Auth error. Invalid parameter received.");
+        throw new Error("invalid email or password.");
       }
 
       const { data } = await createUser({
