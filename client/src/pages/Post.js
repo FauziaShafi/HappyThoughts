@@ -108,32 +108,4 @@ export default function Post() {
     </div>
   );
 }
-  //   return (
-  //     <div>
-  //       <div className="post-title">
-  //         <p>React is AWESOME!!!</p>
-  //       </div>
-  //       <div className="post-content">
-  //         <p>REACT </p>
-  //         <button type="button">Edit</button>
-  //       </div>
-  //       <div className="comment-section">
-  //         <p>Comments</p>
-  //         <div className="user-comment">
-  //           <p>Name of Commentor:</p>
-  //           <p>
-
-  //           </p>
-  //         </div>
-  //         <button type="button">Cancel</button>
-  //         <button type="button">Delete</button>
-  //     </div>
-  //     </div>
-  //   );
-  // }
-
-
-//editPost - title, content 
-//add edited post as the way a new post is added?
-//do comments get deleted with new edited post
 
