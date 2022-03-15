@@ -4,25 +4,32 @@ import { Link } from "react-router-dom";
 import { QUERY_POSTS } from "../util/queries";
 
 export default function PostList() {
-  const posts = ["Happy thought title", "Happy day", "Whatever", "Again!!!"];
+ 
   const styles = {
     body: {
+      fontFamily: "Anton",
       width: "100%",
       display: "flex",
       flexDirection: "column",
       gridGap: "20px",
       alignItems: "center",
-      marginTop: "8%",
+      marginTop: "2%",
+      backgroundColor: "#ECF0F5",
     },
     link: {
       width: "60%",
-      backgroundColor: "grey",
+      backgroundColor: "white",
       padding: "10px",
     },
     linkStyle : {
       textDecoration: 'none',
       fonSize : "2rem",
-      color : "white"
+      color : "black"
+     
+      
+    },
+    h5 : {
+      color : "black"
     }
   };
   const { loading, data } = useQuery(QUERY_POSTS);
@@ -37,7 +44,7 @@ export default function PostList() {
       <h1>All Posts </h1>
         {postData.map((item) => (
           <li className="list-group-item" key={item.id} style={styles.link}>
-            <Link to={`/posts/${item._id}`} style={styles.linkStyle}>{item.postTitle}</Link>
+            <Link to={`/posts/${item._id}`} style={styles.linkStyle}><h5>{item.postTitle}</h5></Link>
           </li>
         ))}
       </div>
