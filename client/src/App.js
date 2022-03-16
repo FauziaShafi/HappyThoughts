@@ -30,7 +30,7 @@ function App() {
             <Route path="/home" element={<SinglePost />} />
             <Route path="/posts" element={<PostList />} />
           </Routes>
-          <Footer />
+          
         </AuthProvider>
       </Router>
     </ApolloProvider>
