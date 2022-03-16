@@ -1,4 +1,6 @@
 export default function Post() {
+
+
   const styles = {
     body: {
       backgroundColor: "grey",
@@ -12,8 +14,6 @@ export default function Post() {
       width: "50%",
       height: "70%",
       borderRadius: "7px",
-      
-      
     },
 
     center: {
