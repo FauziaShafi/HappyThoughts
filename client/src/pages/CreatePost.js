@@ -7,7 +7,6 @@ export default function Create() {
   const styles = {
     body: {
       backgroundColor: "#ECF0F5",
-
       fontFamily: "Anton",
     },
     form: {

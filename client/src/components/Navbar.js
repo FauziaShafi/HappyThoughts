@@ -22,6 +22,7 @@ export default function Navbar() {
           <NavLink to="/posts" className="navbar-link">
             All Post
           </NavLink>
+         
           <button className="navbar-link" onClick={logout}>
             Logout
           </button>

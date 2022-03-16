@@ -1,13 +1,14 @@
 import "../styles/landing.css";
 
 export default function About() {
+ 
+  
     
   return (
     <div className="expoBox">
-      {/* TODO: display logged in user's username */}
-      <h1>About Us</h1>
+      <h1 className="style">About Us</h1>
       <hr />
-      <p>
+      <p >
         We are The Happy Four we are a new group of developers that are making a blog about programmers.
         We wanted to bring everyone together to share their thoughts
         so we created this app not only for us but for the rest of the world.

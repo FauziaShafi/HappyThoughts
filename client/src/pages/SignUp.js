@@ -43,7 +43,7 @@ export default function SignUp() {
 
   if (isLoggedIn) {
     // navigate to the home page
-    return <Navigate to="/post" replace />
+    return <Navigate to="/home" replace />
   }
   return (
     <div className="expoBox">
