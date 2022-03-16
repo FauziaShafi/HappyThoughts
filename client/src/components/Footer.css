@@ -1,0 +1,14 @@
+
+footer {
+    text-align: center;
+    position: relative;
+    width: 100%;
+  }
+  
+  .footerContainer {
+    margin: auto 35%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 25px;
+  }

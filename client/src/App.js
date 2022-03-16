@@ -12,6 +12,7 @@ import CreatePost from "./pages/CreatePost";
 import Post from "./pages/Post";
 import PostList from "./pages/PostList";
 import SinglePost from "./pages/SinglePost";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/home" element={<SinglePost />} />
             <Route path="/posts" element={<PostList />} />
           </Routes>
+          <Footer />
         </AuthProvider>
       </Router>
     </ApolloProvider>
