@@ -18,6 +18,7 @@ const styles = {
     flex: "0 1 6em",
     paddingRight: "0.25em",
   },
+  marginRight : "50px"
 };
 
 const initialFormState = {
@@ -49,7 +50,7 @@ export default function Login() {
 
   if (isLoggedIn) {
     // navigate to page user was redirected from or the home page.
-    const from = location.state?.from?.pathname || "/post";
+    const from = location.state?.from?.pathname || "/home";
     return <Navigate to={from} replace />
   }
 
@@ -87,7 +88,7 @@ export default function Login() {
           />
         </div>
         <div style={styles.formControl}>
-          <button disabled={loading} type="submit">
+          <button disabled={loading} type="submit" style={styles.label}>
             {loading ? "Loading..." : "Submit"}
           </button>
         </div>

@@ -53,6 +53,7 @@ const initState = (initialState) => {
 };
 
 const authReducer = (state, action) => {
+  console.log(defaultState);
   switch (action.type) {
     case LOGOUT:
       return { ...defaultState, authToken: "" };
@@ -130,6 +131,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     await client.clearStore();
     dispatch({ type: LOGOUT });
+    window.location.href="/";
   };
 
   const auth = {
